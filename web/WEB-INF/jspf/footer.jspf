@@ -1,0 +1,66 @@
+<%@page contentType="text/html; charset=UTF8" pageEncoding="UTF8"%>
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="footer">
+            <!-- First column -->
+            <div class="one-fourth">
+                <h3>Customers' Services</h3>
+                <ul class="footer_links">
+                    <li><a href="contact.jsp">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Second column -->
+            <div class="one-fourth">
+                <h3>Administrator</h3>
+                <%  Integer admin_mode = (Integer) request.getSession().getAttribute("admin_mode");
+                    Integer user_mode = (Integer) request.getSession().getAttribute("user_mode");
+                    if ((admin_mode == null || admin_mode == 0) && (user_mode == null || user_mode == 0)) {
+                %>
+                <ul class="footer_links">
+                    <li><a href="login.jsp">Login</a></li>
+                </ul>
+                <%} else if (admin_mode == 1) {%>
+                <ul class="footer_links">
+                    <li> Admin </li>
+                    <li><a href="addProduct.jsp">Add Product</a></li>
+                    <li><a href="AllProductServlet">All Products</a></li>
+                    <li><a href="addCategory.jsp">Add Category</a></li>
+                    <li><a href="AllCategoryServlet">All Categories</a></li>
+                    <li><a href="QuantityProductServlet">Quantity Of All Products</a></li>
+                    <li><a href="CheckoutAdminServlet">Check Out</a></li>
+                    <li><a href="CheckoutDoneServlet">Check Out Done</a></li>
+                    <li><a href="CustomerManagementServlet">Customer Management</a>
+                    <li><a href="LogoutServlet">Logout</a></li>
+                    
+
+                </ul>
+                <%} else {%>
+                <ul class="footer_links">
+                    <li>${user.getEmail()}</li>
+                    <li><a href="UserServlet">Information</a></li>
+                    <li><a href="viewCart.jsp">My Cart</a></li>
+                    <li><a href="OrderingServlet">Ordering</a></li>
+                    <li><a href="PurchasedServlet">Purchased</a></li>
+                    <li><a href="LogoutServlet">Logout</a></li>
+                </ul>
+                <%}%>
+            </div>
+            <!-- Third column -->
+            <div class="one-fourth">
+                <h3>Information</h3>
+                For online shopping Apple's products.
+                <div id="social_icons"> Theme by <a href="http://csstemplateheaven.com">CssTemplateHeaven</a><br>
+                    Photo <a href="http://dieterschneider.net">Dieter Scheider</a>
+                </div>
+
+            </div>
+            <!-- Fourth column -->
+            <div class="one-fourth last">
+                <h3>Socialize</h3>
+                <img src="img/icon_fb.png" alt=""><img src="img/icon_twitter.png" alt=""><img src="img/icon_in.png" alt="">
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </body>
+</html>
